@@ -1,0 +1,48 @@
+.Header{
+    height: 80px;
+    padding: 3px;
+    border: 2px;
+    background-color: rgb(66, 145, 209);
+}
+
+.Footer{
+    height: 80px;
+    padding: 3px;
+    border: 2px;
+    background-color: rgb(53, 86, 114);
+}
+
+.Body{
+    height: 570px;
+    padding: 3px;
+    border: 2px;
+    background-color: rgb(86, 169, 172);
+}
+
+
+.btn {
+    display: inline-block;
+    border: none;
+    background: #555;
+    color: #fff;
+    padding: 7px 20px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background: #666;
+  }
+
+.textbar{
+ height: 38px;
+  }   
+
+
+  .card{
+   border-block-color: black;
+   height: 30% !important; 
+   width: 20% !important;
+   padding: 1% !important;
+   margin: 1% !important;
+   
+  }
