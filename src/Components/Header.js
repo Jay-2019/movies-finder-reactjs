@@ -30,9 +30,9 @@ class Header extends React.Component {
 
     render() {
         return <React.Fragment>
-            <div className="container-fluid">
+            <div className={`$"container-fluid", ${style.Header}`}>
                 <div className="row-md">
-                    <div className={style.Header}>
+                    
                         <div className="col-md">
                             <form onSubmit={this.handleSubmit}  >
                                 <input id="movieName" type="text" value={this.state.title} placeholder="Find Movies, Series & More" size='30' onChange={this.handleChange} className={style.textbar} />
@@ -49,7 +49,7 @@ class Header extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
+         
         </React.Fragment>
     }
 }
