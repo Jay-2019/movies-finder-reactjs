@@ -7,77 +7,53 @@ class Omdb extends React.Component {
 
     state = {
         error: null,
-        isLoaded: false,
+        isLoading: true,
         apiData: []
     }
+
+    // here component will receive New props every time
     componentWillReceiveProps(nextProps) {
         console.log(nextProps.setMovieTitle);
-        fetch(`http://www.omdbapi.com/?apikey=7b011e0e&s=${nextProps.setMovieTitle}`) //nextProps.setMovieTitle
+        // fetching data from the given API
+        fetch(`http://www.omdbapi.com/?apikey=7b011e0e&s=${nextProps.setMovieTitle}`)
+            // get the API response and receive data in JSON format...
+            .then(response => response.json())
+            // then we updata the current state
+            .then(data => this.setState({ apiData: data.Search, isLoading: false }))
+            // Catch any errors we hit and update the app
+            .catch(error => this.setState({ error, isLoading: false }))
 
-            .then((response) => { return response.json() })
-            .then(
-                (result) => {
 
-                    // let apiData = result.map((data) => {
-                    //     return (
-                    //         <div key={data.imdbID}>
-
-                    //             {data.Title}
-                    //             {data.Year}
-
-                    //         </div>
-                    //     )
-                    // });
-                    this.setState({
-                        isLoaded: true,
-                        apiData: result.Search
-                    });
-                },
-                (error) => {
-                    this.setState({ isLoaded: true, error });
-                }
-
-            )
     }
     render() {
-        const { error, isLoaded, apiData } = this.state;
-        if (error) {
-            return <div>Error: {error.message}</div>;
-        } else if (!isLoaded) {
-            return <div>Loading...</div>;
-        } else {
-            return <React.Fragment>
-                <div className="container-fluid">
-                    {/* <div className="row-md"> */}
-                    <div className={style.Body}>
-                        {/* <div className="col-md"> */}
+        const { error, isLoading, apiData } = this.state;
+        return <>
+            <div className={`$"container", ${style.omdbBody} `}>
+            <div className={`$"card", ${style.card} `}>  
+                {error ? <p>error.message</p> : null}
+                {/* Display a message if we encounter an error */}
+                {error ? <p>{error.message}</p> : null}
+                {/* // Here's our data check */}
+                {!isLoading ?
+                    (apiData.map(data => {
+                        const { Title, Year, Poster, omdbID } = data;
+                        return (<div key={omdbID}>
+                            <p>{Poster === "N/A" ? <img src={temporaryPoster} className="card-img-top" alt="Movie Poster" /> : <img src={data.Poster} className="card-img-top" alt="Movie Poster" />}</p>
+                            <p>{Title}</p>
+                            <p>{Year}</p>
+                        </div>
+                        )
+                    }
+                    ))
+                    : (<h3>LOading...</h3>)
+                }
 
-                        {apiData.map((data) =>
-
-                            <div className="card">
-                                <div className={style.card} >
-
-                                    {data.Poster === "N/A" ? <img src={temporaryPoster} className="card-img-top" alt="Movie Poster" /> : <img src={data.Poster} className="card-img-top" alt="Movie Poster" />}
-                                    {/* <img src={data.Poster } className="card-img-top" alt="Movie Poster" /> */}
-                                    {data.Title}
-                                    <br />
-                                    {data.Year}
-                                </div>
-                            </div>
-                        )}
-                        {/* </div> */}
-                        {/* <img src={ this.apiData.Poster } /> */}
-                        {/* <ul>
-                                    {apiData.map(data => (
-                                        
-                                    ))}
-                                </ul> */}
-                        {/* </div> */}
-                    </div>
-                </div>
-
-            </React.Fragment>
-        }
+            </div>
+            &nbsp;
+            <br />
+            </div>
+</>
     }
 }
+
 export default Omdb;

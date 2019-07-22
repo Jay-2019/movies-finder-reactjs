@@ -1,6 +1,8 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+
 import style from '../style.module.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 
@@ -8,15 +10,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class Body extends React.Component {
     render() {
         return <React.Fragment>
-            <div className={`$"container-fluid", ${style.Body} `}>
-                 {/* <div className={ {..."row-md", ...style.Body} }>  */}
-                    {/* <div className={style.Body}> */}
-                        {/* <div className="col-md"> */}
-                           
-                        {/* </div> */}
-                    {/* </div> */}
-                {/* </div> */}
-            </div>
+           
+        <div className={`$"container", ${style.Body} `}>
+          
+           </div>
+      
+          
         </React.Fragment>
     }
 }
