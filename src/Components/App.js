@@ -8,23 +8,23 @@ import Omdb from './Omdb';
 
 class App extends React.Component {
     state = {
-        movieTitle: ''
+        movieTitle: '',
+        option: ''
     }
 
 
-    getSearchBarData = (data) => {
-        this.setState({ movieTitle: data });
-        console.log(data);
-
-
-
+    getSearchBarData = (title, option) => {
+        this.setState({ movieTitle: title });
+        this.setState({ option: option });
+        console.log(title);
+        console.log(option);
     }
 
     render() {
         console.log("", this.state.movieTitle);
         return <React.Fragment>
             <Header sendSearchBarData={this.getSearchBarData} />
-            {this.state.movieTitle === "" ? <Body /> :<Omdb setMovieTitle={this.state.movieTitle} /> }
+            {this.state.movieTitle === "" ? <Body /> : <Omdb setMovieTitle={this.state.movieTitle} setOption={this.state.option} />}
             <Footer />
         </React.Fragment>
     }

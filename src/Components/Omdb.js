@@ -9,18 +9,23 @@ class Omdb extends React.Component {
     state = {
         error: null,
         isLoading: true,
-        apiData: []
+        apiData: [],
+        
     }
 
     // here component will receive New props every time
     componentWillReceiveProps(nextProps) {
         console.log(nextProps.setMovieTitle);
         // fetching data from the given API
-        fetch(`http://www.omdbapi.com/?apikey=7b011e0e&s=${nextProps.setMovieTitle}`)
+        fetch(`http://www.omdbapi.com/?apikey=7b011e0e&s=${nextProps.setMovieTitle}&type=${nextProps.setOption}`)
             // get the API response and receive data in JSON format...
-            .then(response => response.json())
+            .then((response) => {
+                if(!response.ok) throw new Error(response.status);
+                else return response.json();
+              })
             // then we updata the current state
             .then(data => this.setState({ apiData: data.Search, isLoading: false }))
+           
             // Catch any errors we hit and update the app
             .catch(error => this.setState({ error, isLoading: false }))
 
@@ -36,12 +41,15 @@ class Omdb extends React.Component {
                 {error ? <p>{error.message}</p> : null}
                 {/* // Here's our data check */}
                 {!isLoading ?
-                    (apiData.map(data => {
-                        const { Title, Year, Poster, omdbID } = data;
+                 (apiData.map((data) => {
+                        const { Title, Year, Poster, omdbID, Type} = data;
                         return (<div key={omdbID}>
                             <p>{Poster === "N/A" ? <img src={temporaryPoster} className="card-img-top" alt="Movie Poster" /> : <img src={data.Poster} className="card-img-top" alt="Movie Poster" />}</p>
                             <p>{Title}</p>
+                            <p>{Type}</p>
                             <p>{Year}</p>
+                            
+                            
                         </div>
                         )
                     }
