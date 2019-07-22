@@ -10,7 +10,7 @@ class Omdb extends React.Component {
         error: null,
         isLoading: true,
         apiData: [],
-        
+        totalResults:''
     }
 
     // here component will receive New props every time
@@ -24,8 +24,8 @@ class Omdb extends React.Component {
                 else return response.json();
               })
             // then we updata the current state
-            .then(data => this.setState({ apiData: data.Search, isLoading: false }))
-           
+            .then(data => this.setState({ apiData: data.Search, totalResults:data.totalResults, isLoading: false }))
+
             // Catch any errors we hit and update the app
             .catch(error => this.setState({ error, isLoading: false }))
 
@@ -40,14 +40,21 @@ class Omdb extends React.Component {
                 {/* Display a message if we encounter an error */}
                 {error ? <p>{error.message}</p> : null}
                 {/* // Here's our data check */}
+                <div>
+                    <h1 color="red">Total Result found : {this.state.totalResults}</h1>
+                    <br />
+                    &nbsp;
+                </div>
                 {!isLoading ?
                  (apiData.map((data) => {
                         const { Title, Year, Poster, omdbID, Type} = data;
-                        return (<div key={omdbID}>
+                        return (
+                                <div key={omdbID}>
                             <p>{Poster === "N/A" ? <img src={temporaryPoster} className="card-img-top" alt="Movie Poster" /> : <img src={data.Poster} className="card-img-top" alt="Movie Poster" />}</p>
                             <p>{Title}</p>
                             <p>{Type}</p>
                             <p>{Year}</p>
+                           
                             
                             
                         </div>
