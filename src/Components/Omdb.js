@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import style from '../style.module.css';
 import temporaryPoster from './404.png'; // with import temporary poster
 

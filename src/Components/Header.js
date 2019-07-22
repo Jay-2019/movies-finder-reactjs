@@ -1,6 +1,7 @@
 import React from 'react';
-import style from '../style.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import style from '../style.module.css';
+
 
 
 
