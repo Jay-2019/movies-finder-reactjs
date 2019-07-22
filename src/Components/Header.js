@@ -22,13 +22,10 @@ class Header extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-
-
-        
+ 
         const k = document.getElementById("movieName").value;
         if (k === "") {
-            alert("Please Enter Movie Name...");
-            return
+            return   alert("Please Enter Movie Name..."); 
 
         } else {
             this.props.sendSearchBarData(this.state.title, this.state.option); // send data to App.js via callBack function
@@ -50,7 +47,7 @@ class Header extends React.Component {
                             <input id="movieName" type="text" value={this.state.title} placeholder="Find Movies, Series & More" size='30' onChange={this.handleChange} className={style.textbar} />
                             <div className={style.btn}>
                                 <select className="form-control-md" onChange={this.handleSelect}>
-                                    <option value="select">Select</option>
+                                   
                                     <option value="movie">movie</option>
                                     <option value="series">series</option>
                                     <option value="episode">episode</option>

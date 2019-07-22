@@ -14,8 +14,8 @@ class App extends React.Component {
 
 
     getSearchBarData = (title, option) => {
-        this.setState({ movieTitle: title });
-        this.setState({ option: option });
+        this.setState({ movieTitle: title, option: option});
+        // this.setState({ option: option });
         console.log(title);
         console.log(option);
     }
