@@ -15,7 +15,6 @@ class Omdb extends React.Component {
 
     // here component will receive New props every time
     componentWillReceiveProps(nextProps) {
-        debugger;
         console.log(nextProps.setMovieTitle);
         // fetching data from the given API
         fetch(`http://www.omdbapi.com/?apikey=7b011e0e&s=${nextProps.setMovieTitle}&type=${nextProps.setOption}`)
