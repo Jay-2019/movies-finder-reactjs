@@ -54,10 +54,7 @@ class Omdb extends React.Component {
                             <p>{Title}</p>
                             <p>{Type}</p>
                             <p>{Year}</p>
-                           
-                            
-                            
-                        </div>
+                          </div>
                         )
                     }
                     ))
